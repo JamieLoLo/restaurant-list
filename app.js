@@ -29,10 +29,14 @@ app.get("/search", (req, res) => {
     return (
       restaurant.name
         .toLocaleLowerCase()
-        .includes(req.query.keyword.toLocaleLowerCase()) ||
+        .split(" ")
+        .join("")
+        .includes(req.query.keyword.toLocaleLowerCase().split(" ").join("")) ||
       restaurant.category
         .toLowerCase()
-        .includes(req.query.keyword.toLocaleLowerCase())
+        .split(" ")
+        .join("")
+        .includes(req.query.keyword.toLocaleLowerCase().split(" ").join(""))
     );
   });
   // 若無符合搜尋條件的結果，導向noSearchResultPage。
