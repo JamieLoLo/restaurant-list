@@ -25,14 +25,11 @@ app.get("/restaurants/:id", (req, res) => {
 
 // /search這個路由負責比對搜尋結果。
 app.get("/search", (req, res) => {
+  const keyword = req.query.keyword.toLowerCase().trim();
   const filteredRestaurants = restaurantList.results.filter((restaurant) => {
     return (
-      restaurant.name
-        .toLowerCase()
-        .includes(req.query.keyword.toLowerCase().trim()) ||
-      restaurant.category
-        .toLowerCase()
-        .includes(req.query.keyword.toLowerCase().trim())
+      restaurant.name.toLowerCase().includes(keyword) ||
+      restaurant.category.toLowerCase().includes(keyword)
     );
   });
   // 若無符合搜尋條件的結果，導向noSearchResultPage。
