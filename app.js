@@ -28,7 +28,7 @@ app.get("/search", (req, res) => {
   const filteredRestaurants = restaurantList.results.filter((restaurant) => {
     return (
       restaurant.name
-        .toLocaleLowerCase()
+        .toLowerCase()
         .includes(req.query.keyword.toLocaleLowerCase().trim()) ||
       restaurant.category
         .toLowerCase()
